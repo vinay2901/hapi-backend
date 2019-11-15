@@ -121,7 +121,7 @@ server.route({
     try {
       let user = await decodeToken(request.headers.token);
       if (!user) {
-        return h.response({ error: "invalid token" });
+        return h.response({ error: "invalid token" }).code(400);
       }
 
       let userDetails = await UserModel.findOne({
@@ -151,7 +151,7 @@ server.route({
     try {
       let user = await decodeToken(request.headers.token);
       if (!user) {
-        return h.response({ error: "invalid token" });
+        return h.response({ error: "invalid token" }).code(400);
       }
       let newNote = new NoteModel({
         title: request.payload.title,
@@ -182,7 +182,7 @@ server.route({
     try {
       let user = await decodeToken(request.headers.token);
       if (!user) {
-        return h.response({ error: "invalid token" });
+        return h.response({ error: "invalid token" }).code(400);
       }
       let existingNote = await NoteModel.findOne({
         _id: request.payload.id
@@ -216,7 +216,7 @@ server.route({
     try {
       let user = await decodeToken(request.headers.token);
       if (!user) {
-        return h.response({ error: "invalid token" });
+        return h.response({ error: "invalid token" }).code(400);
       }
 
       let result = await NoteModel.find(
@@ -246,7 +246,7 @@ server.route({
     try {
       let user = await decodeToken(request.headers.token);
       if (!user) {
-        return h.response({ error: "invalid token" });
+        return h.response({ error: "invalid token" }).code(400);
       }
 
       if (!request.query.id) {
